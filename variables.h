@@ -10,6 +10,8 @@ public:
 
     static QString token;
 
+    static QString answer;
+
     static long peer_id_second_thread;
 
     static long peer_id;

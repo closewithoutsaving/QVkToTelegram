@@ -16,10 +16,10 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pB_startBot_clicked()
 {
-
+//    vbthread.isSuspended = false;
 }
 
 void MainWindow::on_pB_stopBot_clicked()
 {
-
+//    vbthread.isSuspended = true;
 }

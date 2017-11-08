@@ -5,7 +5,9 @@ Variables::Variables()
 
 }
 
-QString Variables::token = "4bb7a6d48e842d8b77fe35584db524d97960ab20b22e785c71b378f475f81ea91d29f0f76e3cc336f761d";
+QString Variables::token = "c1afd000aae8740917664bc6424b95921e256101423af9db561f012068c0e6ea7e993eadbb07a472282f4";
+
+QString Variables::answer = "Для связи со мной https://t.me/closewithoutsaving";
 
 long Variables::peer_id_second_thread = 408501701;
 

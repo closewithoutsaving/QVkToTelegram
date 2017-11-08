@@ -10,4 +10,5 @@ int main(int argc, char *argv[])
     return a.exec();
 }
 
+//getting token
 //https://oauth.vk.com/authorize?client_id=6247935&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=messages,offline&response_type=token&v=5.69

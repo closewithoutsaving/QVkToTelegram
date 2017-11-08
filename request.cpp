@@ -32,27 +32,31 @@ void Request::messagesGetDialogs()
             return;
         }
 
-        QJsonArray obj3 = obj2["items"].toArray();
-        QJsonObject obj4 = obj3[0].toObject();
-        QJsonObject obj5 = obj4["message"].toObject();
+        int count = obj2["count"].toInt();
 
-        //Is it conf?
-        bool isConf = obj5.contains("admin_id");
-
-        QString str = obj5["body"].toString();
-
-        if(isConf)
+        for (int i = 0; i < count; i++)
         {
-//            Variables::peer_id_second_thread = 2000000000 + obj5["chat_id"].toInt();
-            return;
-        }
-        else
-        {
-            Variables::peer_id_second_thread = obj5["user_id"].toDouble();
-        }
+            QJsonArray obj3 = obj2["items"].toArray();
+            QJsonObject obj4 = obj3[0].toObject();
+            QJsonObject obj5 = obj4["message"].toObject();
 
-        Request::sendMessage();
+            //Is it conf?
+            bool isConf = obj5.contains("admin_id");
 
+            QString str = obj5["body"].toString();
+
+            if(isConf)
+            {
+//              Variables::peer_id_second_thread = 2000000000 + obj5["chat_id"].toInt();
+                return;
+            }
+            else
+            {
+                Variables::peer_id_second_thread = obj5["user_id"].toDouble();
+            }
+
+            Request::sendMessage();
+        }
     }
     else
     {
@@ -64,12 +68,7 @@ void Request::messagesGetDialogs()
 
 void Request::sendMessage()
 {
-    QString message = "Для связи со мной https://t.me/closewithoutsaving";
-
-    if (message.contains(" "))
-    {
-        message.replace(" ", "+");
-    }
+    Variables::answer = Variables::answer.replace(" ", "+");
 
     QEventLoop eventLoop;
     QNetworkAccessManager mgr;
@@ -77,7 +76,7 @@ void Request::sendMessage()
 
     QUrl u = QUrl("https://api.vk.com/method/messages.send?&random_id=" + QString::number(Variables::getRandom())
                   + "&peer_id=" + QString::number(Variables::peer_id_second_thread)
-                  + "&message=" + message
+                  + "&message=" + Variables::answer +
                   + "&access_token=" + Variables::token
                   + "&v=5.57");
 
